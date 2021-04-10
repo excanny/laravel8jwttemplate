@@ -16,15 +16,16 @@ use App\Http\Controllers\DataController;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
 Route::post('register', [UserController::class, 'register']);
 Route::post('login', [UserController::class, 'login']);
 Route::get('open', [DataController::class, 'open']);
-
+// Route::get('addexperience', [DataController::class, 'addexperience']);
 
 Route::group(['middleware' => ['jwt.verify']], function() {
     Route::get('closed', [DataController::class, 'closed']);
+    Route::post('addexperience', [DataController::class, 'addexperience']);
+    Route::get('experiences', [DataController::class, 'experiences']);
+    Route::post('addeducation', [DataController::class, 'addeducation']);
+    Route::get('educations', [DataController::class, 'educations']);
+    Route::post('addportfolio', [DataController::class, 'addportfolio']);
 });
